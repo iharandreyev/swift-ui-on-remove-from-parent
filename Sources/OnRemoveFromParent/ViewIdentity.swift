@@ -5,13 +5,36 @@
 //  Created by Andreyeu, Ihar on 3/8/25.
 //
 
-struct ViewIdentity: Sendable, Hashable {
-  let id: Sendable
+struct ViewIdentity: Sendable, Hashable, CustomStringConvertible, CustomDebugStringConvertible {
+  let description: String
+  let debugDescription: String
   
+  private let id: Sendable
   private let equateTo: @Sendable (ViewIdentity) -> Bool
   private let hashInto: @Sendable (inout Hasher) -> Void
   
   init<ID: Hashable & Sendable>(_ id: ID) {
+    switch id {
+    case let viewIdentity as ViewIdentity:
+      self = viewIdentity
+    default:
+      self.init(id: id)
+    }
+  }
+  
+  private init<ID: Hashable & Sendable>(id: ID) {
+    if let description = (id as? CustomStringConvertible)?.description {
+      self.description = description
+    } else {
+      self.description = "\(id)"
+    }
+    
+    if let debugDescription = (id as? CustomDebugStringConvertible)?.debugDescription {
+      self.debugDescription = debugDescription
+    } else {
+      self.debugDescription = "\(id)"
+    }
+    
     self.id = id
     
     equateTo = { rhs in
