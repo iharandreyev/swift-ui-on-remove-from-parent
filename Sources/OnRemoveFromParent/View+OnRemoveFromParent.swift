@@ -77,7 +77,7 @@ extension View {
   /// - Parameters:
   ///   - onRemoveFromParent: The closure to be invoked when the view is removed from view hierarchy.
   @inline(__always)
-  func onRemoveFromParent(
+  public func onRemoveFromParent(
     perform onRemoveFromParent: @MainActor @escaping () -> Void
   ) -> some View {
     modifier(
