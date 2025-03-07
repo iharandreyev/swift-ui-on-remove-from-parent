@@ -1,9 +1,14 @@
 import Testing
 import SwiftUI
 
-import OnRemoveFromParent
+@testable import OnRemoveFromParent
 
 @Test
 func onRemoveFromParentIsCalledWhenViewIsRemovedFromHierarchy() async throws {
+  
+}
 
+@Test
+func poolIsCleanedUpAfterOnRemoveFromParentIsCalled() async throws {
+  
 }
