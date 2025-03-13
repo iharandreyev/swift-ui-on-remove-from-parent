@@ -7,14 +7,17 @@
 
 import SwiftUI
 
-final class DeinitReporter: ObservableObject, Sendable {
-  private let onDeinit: @Sendable () -> Void
+@MainActor
+final class DeinitReporter: ObservableObject{
+  private let onDeinit: @MainActor () -> Void
   
-  init(onDeinit: @Sendable @escaping () -> Void) {
+  init(onDeinit: @MainActor @escaping () -> Void) {
     self.onDeinit = onDeinit
   }
   
   deinit {
-    onDeinit()
+    Task.detached { @MainActor [onDeinit] in
+      onDeinit()
+    }
   }
 }

@@ -23,11 +23,9 @@ final class DeinitReportersPool {
       return existing
     }
     
-    let new = DeinitReporter {
-      Task.detached { @MainActor [weak self] in
-        onDeinit()
-        self?.pool.removeValue(forKey: key)
-      }
+    let new = DeinitReporter { [weak self] in
+      onDeinit()
+      self?.pool.removeValue(forKey: key)
     }
     
     pool[key] = WeakRef(value: new)

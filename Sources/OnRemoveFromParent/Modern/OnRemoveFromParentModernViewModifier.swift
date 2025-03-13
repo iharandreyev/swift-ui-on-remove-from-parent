@@ -19,13 +19,7 @@ struct OnRemoveFromParentModernViewModifier: ViewModifier {
   
   init(onRemoveFromParent: @MainActor @escaping () -> Void) {
     _reporter = StateObject(
-      wrappedValue: DeinitReporter(
-        onDeinit: {
-          Task.detached { @MainActor in
-            onRemoveFromParent()
-          }
-        }
-      )
+      wrappedValue: DeinitReporter(onDeinit: onRemoveFromParent)
     )
   }
   
