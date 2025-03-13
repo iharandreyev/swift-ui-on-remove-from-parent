@@ -13,7 +13,7 @@ extension View {
   /// **LIMITATIONS:**
   ///
   /// - The view identity must be bound to a proxy value with `identify(as:)` modifier.
-  /// - There can be only a single callback for a given view.
+  /// - There can be only a single callback for a given view. Due to the way SwiftUI modifiers work, only the outer modifier will produce effect.
   ///
   ///```swift
   ///enum ViewID: Hashable, Sendable {
@@ -24,13 +24,26 @@ extension View {
   ///  var body: some View {
   ///    SomeView()
   ///      .onRemoveFromParent {
+  ///        ///
+  ///        // WILL NOT BE INVOKED!
+  ///      }
+  ///      .onRemoveFromParent {
+  ///         // WILL BE INVOKED
   ///         /* your work */
   ///      }
   ///      .identify(as: ViewID.someView)
   ///  }
   ///}
-  ///```
   ///
+  ///struct SomeView: View {
+  ///   var body: some View {
+  ///     AnotherView()
+  ///       .onRemoveFromParent {
+  ///         // WILL NOT BE INVOKED!
+  ///       }
+  ///   }
+  ///}
+  ///```
   ///
   /// - Parameters:
   ///   - onRemoveFromParent: The closure to be invoked when the view is removed from view hierarchy.
