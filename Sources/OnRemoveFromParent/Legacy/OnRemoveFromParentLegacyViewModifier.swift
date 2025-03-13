@@ -19,7 +19,12 @@ private extension EnvironmentValues {
   }
 }
 
-//@available(iOS, deprecated: 17, message: "")
+@available(iOS, deprecated: 17, message: "")
+@available(macCatalyst, deprecated: 17, message: "")
+@available(macOS, deprecated: 14, message: "")
+@available(tvOS, deprecated: 17, message: "")
+@available(visionOS, deprecated: 2, message: "")
+@available(watchOS, deprecated: 11, message: "")
 struct OnRemoveFromParentLagacyViewModifier: ViewModifier {
   @Environment(\.viewIdentity)
   private var id
