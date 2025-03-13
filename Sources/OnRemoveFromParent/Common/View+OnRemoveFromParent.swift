@@ -28,20 +28,20 @@ extension View {
   ///        // WILL NOT BE INVOKED!
   ///      }
   ///      .onRemoveFromParent {
-  ///         // WILL BE INVOKED
-  ///         /* your work */
+  ///        // WILL BE INVOKED
+  ///        /* your work */
   ///      }
   ///      .identify(as: ViewID.someView)
   ///  }
   ///}
   ///
   ///struct SomeView: View {
-  ///   var body: some View {
-  ///     AnotherView()
-  ///       .onRemoveFromParent {
-  ///         // WILL NOT BE INVOKED!
-  ///       }
-  ///   }
+  ///  var body: some View {
+  ///    AnotherView()
+  ///      .onRemoveFromParent {
+  ///        // WILL NOT BE INVOKED!
+  ///      }
+  ///  }
   ///}
   ///```
   ///
