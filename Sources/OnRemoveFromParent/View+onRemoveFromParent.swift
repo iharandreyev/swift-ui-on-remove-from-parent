@@ -10,7 +10,7 @@ import SwiftUI
 extension View {
   @inline(__always)
   @ViewBuilder
-  public func onRemoveFromParent2(
+  public func onRemoveFromParent(
     perform onRemoveFromParent: @MainActor @escaping () -> Void
   ) -> some View {
     modifier(
