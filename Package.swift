@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-  name: "OnRemoveFromParent",
+  name: "swift-ui-on-remove-from-parent",
   platforms: [
     .macOS(.v10_15),
     .iOS(.v13),
@@ -12,15 +12,15 @@ let package = Package(
   ],
   products: [
     .library(
-      name: "OnRemoveFromParent",
+      name: "SUIOnRemoveFromParent",
       targets: [
-        "OnRemoveFromParent",
+        "SUIOnRemoveFromParent",
       ]
     ),
   ],
   targets: [
     .target(
-      name: "OnRemoveFromParent"
+      name: "SUIOnRemoveFromParent"
     ),
   ],
   swiftLanguageModes: [.v5]
