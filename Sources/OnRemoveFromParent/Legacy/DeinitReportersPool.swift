@@ -5,7 +5,12 @@
 //  Created by Andreyeu, Ihar on 3/8/25.
 //
 
-//@available(iOS, deprecated: 17, message: "")
+@available(iOS, deprecated: 17, message: "")
+@available(macCatalyst, deprecated: 17, message: "")
+@available(macOS, deprecated: 14, message: "")
+@available(tvOS, deprecated: 17, message: "")
+@available(visionOS, deprecated: 2, message: "")
+@available(watchOS, deprecated: 11, message: "")
 @MainActor
 final class DeinitReportersPool {
   private var pool: [AnyHashable: WeakRef<DeinitReporter>] = [:]

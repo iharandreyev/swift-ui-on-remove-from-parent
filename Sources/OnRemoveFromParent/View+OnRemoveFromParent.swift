@@ -41,7 +41,7 @@ extension View {
     line: UInt = #line,
     perform onRemoveFromParent: @MainActor @escaping () -> Void
   ) -> some View {
-    if #available(iOS 17, *) {
+    if #available(iOS 17, macCatalyst 17, macOS 14, tvOS 17, visionOS 2, watchOS 11, *) {
       modifier(
         OnRemoveFromParentModernViewModifier(
           onRemoveFromParent: onRemoveFromParent
