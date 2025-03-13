@@ -1,8 +1,8 @@
 //
-//  View+OnRemoveFromParent.swift
+//  OnRemoveFromParentLegacyViewModifier.swift
 //  OnRemoveFromParent
 //
-//  Created by Andreyeu, Ihar on 3/8/25.
+//  Created by Andreyeu, Ihar on 3/13/25.
 //
 
 import IssueReporting
@@ -19,7 +19,13 @@ private extension EnvironmentValues {
   }
 }
 
-private struct OnRemoveFromParentViewModifier: ViewModifier {
+@available(iOS, deprecated: 17, message: "")
+@available(macCatalyst, deprecated: 17, message: "")
+@available(macOS, deprecated: 14, message: "")
+@available(tvOS, deprecated: 17, message: "")
+@available(visionOS, deprecated: 2, message: "")
+@available(watchOS, deprecated: 11, message: "")
+struct OnRemoveFromParentLagacyViewModifier: ViewModifier {
   @Environment(\.viewIdentity)
   private var id
   
@@ -57,48 +63,5 @@ private struct OnRemoveFromParentViewModifier: ViewModifier {
         )
       }
     }
-  }
-}
-
-extension View {
-  /// Attaches a callback that will be invoked when the view is removed from view hierarchy.
-  ///
-  /// **LIMITATIONS:**
-  ///
-  /// - The view identity must be bound to a proxy value with `identify(as:)` modifier.
-  /// - There can be only a single callback for a given view.
-  ///
-  ///```swift
-  ///enum ViewID: Hashable, Sendable {
-  ///  case someView
-  ///}
-  ///
-  ///struct Container: View {
-  ///  var body: some View {
-  ///    SomeView()
-  ///      .onRemoveFromParent {
-  ///         /* your work */
-  ///      }
-  ///      .identify(as: ViewID.someView)
-  ///  }
-  ///}
-  ///```
-  ///
-  ///
-  /// - Parameters:
-  ///   - onRemoveFromParent: The closure to be invoked when the view is removed from view hierarchy.
-  @inline(__always)
-  public func onRemoveFromParent(
-    fileID: StaticString = #fileID,
-    line: UInt = #line,
-    perform onRemoveFromParent: @MainActor @escaping () -> Void
-  ) -> some View {
-    modifier(
-      OnRemoveFromParentViewModifier(
-        fileID: fileID,
-        line: line,
-        onRemoveFromParent: onRemoveFromParent
-      )
-    )
   }
 }
