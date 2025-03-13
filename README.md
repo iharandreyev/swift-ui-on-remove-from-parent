@@ -1,4 +1,4 @@
-# OnRemoveFromParent
+# SUIOnRemoveFromParent
 
 An extension for `SwiftUI.View` to enable `onRemoveFromParent` functionality.
 
