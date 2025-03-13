@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-  name: "OnRemoveFromParent",
+  name: "swift-ui-on-remove-from-parent",
   platforms: [
     .macOS(.v10_15),
     .iOS(.v13),
@@ -12,27 +12,15 @@ let package = Package(
   ],
   products: [
     .library(
-      name: "OnRemoveFromParent",
+      name: "SUIOnRemoveFromParent",
       targets: [
-        "OnRemoveFromParent",
+        "SUIOnRemoveFromParent",
       ]
     ),
-  ],
-  dependencies: [
-    .package(url: "https://github.com/pointfreeco/xctest-dynamic-overlay", from: "1.2.2"),
   ],
   targets: [
     .target(
-      name: "OnRemoveFromParent",
-      dependencies: [
-        .product(name: "IssueReporting", package: "xctest-dynamic-overlay"),
-      ]
-    ),
-    .testTarget(
-      name: "OnRemoveFromParentTests",
-      dependencies: [
-        "OnRemoveFromParent",
-      ]
+      name: "SUIOnRemoveFromParent"
     ),
   ],
   swiftLanguageModes: [.v6]
