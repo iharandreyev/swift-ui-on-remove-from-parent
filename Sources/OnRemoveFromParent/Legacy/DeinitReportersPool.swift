@@ -5,12 +5,11 @@
 //  Created by Andreyeu, Ihar on 3/8/25.
 //
 
+//@available(iOS, deprecated: 17, message: "")
 @MainActor
 final class DeinitReportersPool {
   private var pool: [AnyHashable: WeakRef<DeinitReporter>] = [:]
-  
-  static let shared = DeinitReportersPool()
-  
+
   func spawn<Key: Hashable & Sendable>(
     forKey key: Key,
     onDeinit: @MainActor @escaping () -> Void
@@ -30,4 +29,12 @@ final class DeinitReportersPool {
     
     return new
   }
+}
+
+extension DeinitReportersPool {
+  static var shared: DeinitReportersPool {
+    _shared.value
+  }
+  
+  private static let _shared = LazyValue(DeinitReportersPool())
 }

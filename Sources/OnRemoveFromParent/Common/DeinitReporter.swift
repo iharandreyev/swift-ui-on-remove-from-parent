@@ -5,8 +5,9 @@
 //  Created by Andreyeu, Ihar on 3/8/25.
 //
 
-@MainActor
-final class DeinitReporter {
+import SwiftUI
+
+final class DeinitReporter: ObservableObject, Sendable {
   private let onDeinit: @Sendable () -> Void
   
   init(onDeinit: @Sendable @escaping () -> Void) {

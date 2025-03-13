@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-  name: "OnRemoveFromParent",
+  name: "SUIOnRemoveFromParent",
   platforms: [
     .macOS(.v10_15),
     .iOS(.v13),
@@ -12,9 +12,9 @@ let package = Package(
   ],
   products: [
     .library(
-      name: "OnRemoveFromParent",
+      name: "SUIOnRemoveFromParent",
       targets: [
-        "OnRemoveFromParent",
+        "SUIOnRemoveFromParent",
       ]
     ),
   ],
@@ -23,15 +23,15 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "OnRemoveFromParent",
+      name: "SUIOnRemoveFromParent",
       dependencies: [
         .product(name: "IssueReporting", package: "xctest-dynamic-overlay"),
       ]
     ),
     .testTarget(
-      name: "OnRemoveFromParentTests",
+      name: "SUIOnRemoveFromParentTests",
       dependencies: [
-        "OnRemoveFromParent",
+        "SUIOnRemoveFromParent",
       ]
     ),
   ],
