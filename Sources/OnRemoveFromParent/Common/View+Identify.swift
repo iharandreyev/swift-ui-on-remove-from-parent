@@ -8,11 +8,11 @@
 import SwiftUI
 
 private struct ViewIdentityKey: EnvironmentKey {
-  static let defaultValue: ViewIdentity? = nil
+  static let defaultValue: AnyHashableSendable? = nil
 }
 
 extension EnvironmentValues {
-  var viewIdentity: ViewIdentity? {
+  var viewIdentity: AnyHashableSendable? {
     get { self[ViewIdentityKey.self] }
     set { self[ViewIdentityKey.self] = newValue }
   }
@@ -28,7 +28,7 @@ extension View {
     as id: ID
   ) -> some View {
     self
-      .environment(\.viewIdentity, ViewIdentity(id))
+      .environment(\.viewIdentity, AnyHashableSendable(id))
       .id(id)
   }
 }
